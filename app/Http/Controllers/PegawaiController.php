@@ -28,14 +28,22 @@ class PegawaiController extends Controller
         $pegawai->password = password_hash($request->password, PASSWORD_DEFAULT);
         $pegawai->telepon_pegawai = $request->telepon_pegawai;
       
+        echo "test";
         
         $success = $pegawai->save();
 
-        if(!$success){
-            return response()->json('Error Add',500);
+        echo "test2";
+        if($success){
+            return response()->json('Success',200);
         }
         else
-            return response()->json('Success',200);
+            return response()->json('Error Add',500);
+            
+        // if(!$success){
+        //     return response()->json('Error Add',500);
+        // }
+        // else
+        //     return response()->json('Success',200);
     }
 
     //Tampil Berdasarkan ID

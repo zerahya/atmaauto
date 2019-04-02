@@ -14,11 +14,11 @@ class CreatePegawaisTable extends Migration
     public function up()
     {
         Schema::create('pegawais', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id_pegawai');
             $table->string('nama');
             $table->string('alamat');
-            $table->float('gaji');
-            $table->string('username');
+            $table->double('gaji');
+            $table->string('username')->unique();
             $table->string('password');
             $table->string('telepon_pegawai');
             $table->unsignedBigInteger('id_role');

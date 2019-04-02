@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Cabang;
+
 class CabangSeeder extends Seeder
 {
     /**
@@ -11,6 +13,6 @@ class CabangSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }
