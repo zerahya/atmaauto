@@ -38,3 +38,4 @@ Route::post('/pegawai/store','PegawaiController@store');
 Route::get('/pegawai/showById/{id_role}','PegawaiController@show');
 Route::put('/pegawai/update/{id_role}','PegawaiController@update');
 Route::delete('/pegawai/delete/{id_role}','PegawaiController@destroy');
+Route::post('/pegawai/login','PegawaiController@login');

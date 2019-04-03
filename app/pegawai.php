@@ -13,5 +13,7 @@ class pegawai extends Model
     public $timestamps = false;
     protected $fillable = ['nama','alamat','gaji','username','password','telepon_pegawai','id_role','id_cabang'];
 
-
+    protected $hidden = [
+        'password',
+    ];
 }

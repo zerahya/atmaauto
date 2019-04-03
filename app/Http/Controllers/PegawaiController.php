@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\pegawai;
-
+use Exception;
+use Hash;
 class PegawaiController extends Controller
 {
     //Tampil
@@ -18,7 +19,7 @@ class PegawaiController extends Controller
     //Create
     public function store(Request $request)
     {
-        $pegawai = new pegawai;
+        $pegawai = new pegawai();
         $pegawai->id_role = $request->id_role;
         $pegawai->id_cabang = $request->id_cabang;
         $pegawai->nama = $request->nama;
@@ -28,16 +29,16 @@ class PegawaiController extends Controller
         $pegawai->password = password_hash($request->password, PASSWORD_DEFAULT);
         $pegawai->telepon_pegawai = $request->telepon_pegawai;
       
-        echo "test";
-        
-        $success = $pegawai->save();
-
-        echo "test2";
-        if($success){
-            return response()->json('Success',200);
-        }
-        else
+        try{
+            if($pegawai->save()){
+                return response()->json('Success',200);
+            }
+            else
+                return response()->json('Error Add',500);
+        }catch(Exception $e){
             return response()->json('Error Add',500);
+        };
+
             
         // if(!$success){
         //     return response()->json('Error Add',500);
@@ -54,9 +55,7 @@ class PegawaiController extends Controller
 
         if(is_null($pegawai)){
             return response()->json('Not Found',404);
-
         }
-
         else
             return response()->json($pegawai,200);
     }
@@ -124,4 +123,27 @@ class PegawaiController extends Controller
         else
             return response()->json('Success',200);
     }
+
+    public function login(Request $request)
+    {
+        $pegawai = pegawai::where('username',$request->username)->first();
+
+
+        if (! Hash::check($request->password,$pegawai->password)) {
+            
+            return response()->json('Fail Login', 500);
+        }
+        else
+            return response()->json($pegawai,200);
+    }
+
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+        
+        ]);
+    }
+    
 }
