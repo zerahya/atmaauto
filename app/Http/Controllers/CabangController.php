@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cabang;
+use App\cabang;
 
 class CabangController extends Controller
 {
     //Tampil
     public function index()
     {
-        $cabang = Cabang::all();
+        $cabang = cabang::all();
 
         return response()->json($cabang,200);
     }
@@ -18,7 +18,7 @@ class CabangController extends Controller
     //Create
     public function store(Request $request)
     {
-        $cabang = new Cabang;
+        $cabang = new cabang;
         $cabang->nama = $request->nama;
         $cabang->alamat = $request->alamat;
         $cabang->telepon_cabang = $request->telepon_cabang;
@@ -36,7 +36,7 @@ class CabangController extends Controller
 
     public function show($id_cabang)
     {
-        $cabang = Cabang::find($id_cabang);
+        $cabang = cabang::find($id_cabang);
 
         if(is_null($cabang)){
             return response()->json('Not Found',404);
@@ -50,7 +50,7 @@ class CabangController extends Controller
     //Update
     public function update(Request $request, $id_cabang)
     {
-        $cabang = Cabang::find($id_cabang);
+        $cabang = cabang::find($id_cabang);
 
         if(!is_null($request->nama)){
             $cabang->nama = $request->nama;
@@ -77,7 +77,7 @@ class CabangController extends Controller
     //Delet
     public function destroy($id_cabang)
     {
-        $cabang = Cabang::find($id_cabang);
+        $cabang = cabang::find($id_cabang);
 
         if(is_null($cabang)){
             return response()->json('Not Found',404);
