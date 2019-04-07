@@ -129,12 +129,11 @@ class PegawaiController extends Controller
         $pegawai = pegawai::where('username',$request->username)->first();
 
 
-        if (! Hash::check($request->password,$pegawai->password)) {
-            
-            return response()->json('Fail Login', 500);
-        }
-        else
+        if (Hash::check($request->password,$pegawai->password)) {
             return response()->json($pegawai,200);
+        }
+        else 
+            return response()->json('Fail Login', 500);
     }
 
     protected function respondWithToken($token)

@@ -13,19 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, enctype');
-header('Access-Control-Allow-Methods: GET, PATCH, POST, DELETE');
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, enctype');
+// header('Access-Control-Allow-Methods: GET, PATCH, POST, DELETE');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-
-//Cabang
+Route::group(['middleware' => 'cors'], function() {
+    //Cabang
 Route::get('/cabang','CabangController@index');
 Route::post('/cabang/store','CabangController@store');
 Route::get('/cabang/showById/{id_cabang}','CabangController@show');
@@ -124,3 +122,6 @@ Route::post('/detiltransaksisparepart/store','DetilTransaksiSparepartController@
 Route::get('/detiltransaksisparepart/showById/{id_role}','DetilTransaksiSparepartController@show');
 Route::put('/detiltransaksisparepart/update/{id_role}','DetilTransaksiSparepartController@update');
 Route::delete('/detiltransaksisparepart/delete/{id_role}','DetilTransaksiSparepartController@destroy');
+
+ 
+ });

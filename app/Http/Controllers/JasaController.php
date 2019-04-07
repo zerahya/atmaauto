@@ -39,7 +39,6 @@ class JasaController extends Controller
     {
         $jasa = new jasa;
         $jasa->nama = $request->nama;
-        $jasa->alamat = $request->alamat;
         $jasa->harga = $request->harga;
         
         $success = $jasa->save();
@@ -56,7 +55,7 @@ class JasaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_jasa)
     {
         $jasa = jasa::find($id_jasa);
 
@@ -93,11 +92,7 @@ class JasaController extends Controller
             $jasa->nama = $request->nama;
         }
 
-        if(!is_null($request->alamat)){
-            $jasa->alamat = $request->alamat;
-        }
-
-        if(!is_null($request->telp)){
+        if(!is_null($request->harga)){
             $jasa->harga = $request->harga;
         }
 
