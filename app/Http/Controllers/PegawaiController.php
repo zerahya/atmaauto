@@ -19,7 +19,7 @@ class PegawaiController extends Controller
     //Create
     public function store(Request $request)
     {
-        $pegawai = new pegawai();
+        $pegawai = new pegawai;
         $pegawai->id_role = $request->id_role;
         $pegawai->id_cabang = $request->id_cabang;
         $pegawai->nama = $request->nama;
@@ -36,7 +36,7 @@ class PegawaiController extends Controller
             else
                 return response()->json('Error Add',500);
         }catch(Exception $e){
-            return response()->json('Error Add',500);
+            return response()->json('Error Add exception',500);
         };
 
             

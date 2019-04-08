@@ -16,4 +16,15 @@ class pegawai extends Model
     protected $hidden = [
         'password',
     ];
+
+    //tambahan
+    public function cabangs()
+    {
+        return $this->belongsTo('App\cabang', 'id_cabang', 'id_cabang');
+    }
+
+    public function roles()
+    {
+        return $this->belongsTo('App\role', 'id_role', 'id_role');
+    }
 }
